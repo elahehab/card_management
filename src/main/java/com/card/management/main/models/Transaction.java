@@ -45,6 +45,15 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Card getSourceCard() {
         return this.sourceCard;
     }

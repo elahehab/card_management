@@ -13,7 +13,10 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String[] cardNumber;
+    private String cardNumber_1;
+    private String cardNumber_2;
+    private String cardNumber_3;
+    private String cardNumber_4;
     
     @ManyToOne
     @JoinColumn(name = "USER_ID")
@@ -27,9 +30,13 @@ public class Card {
     }
 
 
-    public Card(int id, String[] cardNumber, User user, int cvv2, int expirationMonth, int expirationYear, String secondPass) {
+
+    public Card(int id, String cardNumber_1, String cardNumber_2, String cardNumber_3, String cardNumber_4, User user, int cvv2, int expirationMonth, int expirationYear, String secondPass) {
         this.id = id;
-        this.cardNumber = cardNumber;
+        this.cardNumber_1 = cardNumber_1;
+        this.cardNumber_2 = cardNumber_2;
+        this.cardNumber_3 = cardNumber_3;
+        this.cardNumber_4 = cardNumber_4;
         this.user = user;
         this.cvv2 = cvv2;
         this.expirationMonth = expirationMonth;
@@ -45,12 +52,36 @@ public class Card {
         this.id = id;
     }
 
-    public String[] getCardNumber() {
-        return this.cardNumber;
+    public String getCardNumber_1() {
+        return this.cardNumber_1;
     }
 
-    public void setCardNumber(String[] cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNumber_1(String cardNumber_1) {
+        this.cardNumber_1 = cardNumber_1;
+    }
+
+    public String getCardNumber_2() {
+        return this.cardNumber_2;
+    }
+
+    public void setCardNumber_2(String cardNumber_2) {
+        this.cardNumber_2 = cardNumber_2;
+    }
+
+    public String getCardNumber_3() {
+        return this.cardNumber_3;
+    }
+
+    public void setCardNumber_3(String cardNumber_3) {
+        this.cardNumber_3 = cardNumber_3;
+    }
+
+    public String getCardNumber_4() {
+        return this.cardNumber_4;
+    }
+
+    public void setCardNumber_4(String cardNumber_4) {
+        this.cardNumber_4 = cardNumber_4;
     }
 
     public User getUser() {
@@ -97,7 +128,10 @@ public class Card {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", cardNumber='" + getCardNumber() + "'" +
+            ", cardNumber_1='" + getCardNumber_1() + "'" +
+            ", cardNumber_2='" + getCardNumber_2() + "'" +
+            ", cardNumber_3='" + getCardNumber_3() + "'" +
+            ", cardNumber_4='" + getCardNumber_4() + "'" +
             ", user='" + getUser() + "'" +
             ", cvv2='" + getCvv2() + "'" +
             ", expirationMonth='" + getExpirationMonth() + "'" +
@@ -105,6 +139,7 @@ public class Card {
             ", secondPass='" + getSecondPass() + "'" +
             "}";
     }
+    
 
     
 

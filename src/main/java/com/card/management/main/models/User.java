@@ -39,6 +39,15 @@ public class User {
         this.cards = cards;
     }
 
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return this.username;
     }
@@ -54,7 +63,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getName() {
         return this.name;
@@ -80,7 +88,6 @@ public class User {
         this.nationalId = nationalId;
     }
 
-
     public List<Card> getCards() {
         return this.cards;
     }
@@ -88,27 +95,7 @@ public class User {
     public void setCards(List<Card> cards) {
         this.cards = cards;
     }
-
-
-    public User name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public User lastname(String lastname) {
-        setLastname(lastname);
-        return this;
-    }
-
-    public User nationalId(String nationalId) {
-        setNationalId(nationalId);
-        return this;
-    }
-
-    public User cards(List<Card> cards) {
-        setCards(cards);
-        return this;
-    }
+    
 
 
 
