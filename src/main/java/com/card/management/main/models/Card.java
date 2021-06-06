@@ -19,7 +19,7 @@ public class Card {
     private String cardNumber_4;
     
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
     private int cvv2;
     private int expirationMonth;

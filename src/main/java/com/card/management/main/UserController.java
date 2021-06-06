@@ -40,7 +40,7 @@ public class UserController {
 		List<EntityModel<User>> users = userRepository.findAll().stream()
 				.map(user -> EntityModel.of(user,
 						linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
-						linkTo(methodOn(UserController.class).all()).withRel("employees")))
+						linkTo(methodOn(UserController.class).all()).withRel("users")))
 				.collect(Collectors.toList());
 
 		return CollectionModel.of(users, linkTo(methodOn(UserController.class).all()).withSelfRel());

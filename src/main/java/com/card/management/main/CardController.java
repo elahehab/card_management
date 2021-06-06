@@ -29,7 +29,7 @@ public class CardController {
     private CardRepository cardRepository;
 
     @GetMapping("/{id}")
-	EntityModel<Card> one(@PathVariable Integer id) {
+	EntityModel<Card> one(@PathVariable int id) {
 		Card card = cardRepository.findById(id).orElseThrow();
 		
 		return EntityModel.of(card,
@@ -42,7 +42,7 @@ public class CardController {
 		List<EntityModel<Card>> users = cardRepository.findAll().stream()
 				.map(user -> EntityModel.of(user,
 						linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
-						linkTo(methodOn(UserController.class).all()).withRel("employees")))
+						linkTo(methodOn(UserController.class).all()).withRel("cards")))
 				.collect(Collectors.toList());
 
 		return CollectionModel.of(users, linkTo(methodOn(CardController.class).all()).withSelfRel());

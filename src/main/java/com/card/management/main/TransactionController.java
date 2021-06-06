@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class TransactionController {
 		List<EntityModel<Transaction>> transactions = transactionRepository.findAll().stream()
 				.map(user -> EntityModel.of(user,
 						linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
-						linkTo(methodOn(UserController.class).all()).withRel("employees")))
+						linkTo(methodOn(UserController.class).all()).withRel("transactions")))
 				.collect(Collectors.toList());
 
 		return CollectionModel.of(transactions, linkTo(methodOn(TransactionController.class).all()).withSelfRel());
@@ -55,5 +56,18 @@ public class TransactionController {
 	@PostMapping("/new")
 	Transaction newTransaction(@RequestBody Transaction newTrns) {
 		return transactionRepository.save(newTrns);
-	}
+    }
+    
+    @GetMapping("report/{id}/{startDate}/{endDate}")
+    public @ResponseBody CollectionModel<EntityModel<Transaction>> getCardTransactionsReport(@PathVariable int cardId, 
+        @PathVariable Date startDate, @PathVariable Date endDate) {
+            
+            List<EntityModel<Transaction>> transactions = transactionRepository.findCardTransactionsInDateDuration(startDate, endDate, cardId).stream()
+            .map(user -> EntityModel.of(user,
+                    linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
+                    linkTo(methodOn(UserController.class).all()).withRel("transactions")))
+            .collect(Collectors.toList());
+
+            return CollectionModel.of(transactions, linkTo(methodOn(TransactionController.class).all()).withSelfRel());
+    }
 }
